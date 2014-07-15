@@ -1,0 +1,36 @@
+doctype html
+html(lang="en")
+
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+        meta(name="viewport", content="width=device-width,initial-scale=1.0")
+        meta(name="description", content="")
+        meta(name="author", content="")
+
+        title CQS | CaseWare Cloud
+
+        //Bootstrap CSS
+        link(href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet")
+        //FontAwesome Icons
+        link(href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet")
+        //Custom CSS
+        link(href="styles/client.min.css" rel="stylesheet" type="text/css")
+
+    body
+        include partials/nav
+        include partials/static
+        include partials/section-1
+        include partials/section-2
+        include partials/section-3
+        include partials/section-4
+
+        //Core JavaScript Files
+        script(src="//code.jquery.com/jquery-1.11.0.min.js")
+
+        //Latest compiled and minified JavaScript
+        script(src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js")
+        script(src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js")
+
+        //Custom JavaScript
+        script(src='scripts/client.min.js')
