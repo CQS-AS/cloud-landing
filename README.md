@@ -1,6 +1,6 @@
 ## Landing Page for CQS Cloud
 
-This is a demo project for the new CQS Cloud landing page. Pull and take a look.
+This is a demo project for the new CQS Cloud landing page. Pull the project and take a look.
 
 
 
@@ -12,3 +12,4 @@ Once you have the branch cloned. The following steps are needed:
 
 		npm install
 
+Then you are on your way. (if not, Jaco will glady assist)
