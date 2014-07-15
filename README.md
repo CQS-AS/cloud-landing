@@ -1,4 +1,4 @@
-## Landing Page for CQS Cloud
+## Landing page project for CQS Cloud
 
 This is a demo project for the new CQS Cloud landing page. Pull the project and take a look.
 
