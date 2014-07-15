@@ -1,7 +1,6 @@
-## Reference implementation for CQS Cloud
+## Landing Page for CQS Cloud
 
-This is a reference implementation for the CQS Cloud projects. It defines the basic styles
-and shows the structure and organisation of the codebase as well as the tools that are used.
+This is a demo project for the new CQS Cloud landing page. Pull and take a look.
 
 
 
@@ -13,16 +12,3 @@ Once you have the branch cloned. The following steps are needed:
 
 		npm install
 
-2. Install the submodules via the `gitPullWithSub` task
-
- 		grunt gitPullWithSub
-
-
-
-## Execution
-
-It is assumed that in production forever would be used, it is not included here as a module. To execute,
-
-		node dist/server.js dev
-
-The 'dev' parameter refers to the configuration (src/server/cfg/dev.ts), as distributed in dist/cfg/*.js
