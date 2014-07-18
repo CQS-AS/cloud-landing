@@ -1,4 +1,5 @@
 $('.popover-feature').popover({
-    trigger: 'hover'
+    trigger: 'hover',
+    placement: 'bottom'
 
 });
