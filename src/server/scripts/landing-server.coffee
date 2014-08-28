@@ -13,19 +13,18 @@ if cluster.isMaster
 
 else
     try
-        port = parseInt (require "./cfg/#{cfgarg}"), 10
+        port = parseInt process.argv[2], 10
 
         console.log 'Initialising child process'
 
         app = (require 'express')()
         app.set 'port', port
-        app.use (require 'morgan')() # logging
-        app.use (require 'static-favicon')()
+        app.use (require 'morgan') 'combined' # logging
+        #app.use (require 'serve-favicon') path.join __dirname, 'public', 'favicon.ico'
         app.use (require 'compression')()
-        app.use (require 'body-parser')()
-        app.use (require 'method-override')()
-        app.use (require 'connect-busboy')()
-        app.use (require 'serve-static') path.join __dirname, '..', 'public'
+        #app.use (require 'body-parser')()
+        #app.use (require 'method-override')()
+        app.use (require 'serve-static') path.join __dirname, 'public'
         app.use (require 'errorhandler')()
 
         http = (require 'http').createServer app
