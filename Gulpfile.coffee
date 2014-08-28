@@ -31,50 +31,54 @@ errcb = (err) ->
 
 
 gulp.task 'css', () ->
-    go = (src, dest = 'dist/public/', file = 'client.css') ->
+    go = (src = [ 'src/client/' ], dest = 'dist/public/styles/', file = 'client.css') ->
         gulp.src append src, [ 'styles/**/*.less' ]
-        .pipe newer "#{dest}styles/#{file}"
-        .pipe less()
-        .pipe cssmin()
-        .pipe concat file
-        .pipe gulp.dest "#{dest}styles/"
+            .pipe newer "#{dest}#{file}"
+            .pipe plumber errcb
+            .pipe filelog()
+            .pipe less()
+            .pipe cssmin()
+            .pipe concat file
+            .pipe gulp.dest dest
 
-    go [ 'client/' ]
+    go()
 
 
 gulp.task 'html', () ->
-    go = (src, dest = 'dist/public/', check = 'index.html') ->
+    go = (src = [ 'src/client/' ], dest = 'dist/public/', check = 'index.html') ->
         gulp.src append src, [ 'views/**/*.jade' ]
-        .pipe plumber errcb
-        .pipe newer "#{dest}#{check}"
-        .pipe jade()
-        .pipe gulp.dest dest
+            .pipe plumber errcb
+            .pipe newer "#{dest}#{check}"
+            .pipe jade()
+            .pipe gulp.dest dest
 
-    go [ 'src/client/' ]
+    go()
 
 
-gulp.task 'coffee', () ->
-    go = (src, dest = 'dist/') ->
+gulp.task 'coffee-server', () ->
+    go = (src = [ 'src/server/' ], dest = 'dist/') ->
         gulp.src append src, [ 'scripts/**/*.coffee' ]
-        .pipe newer
-            dest: dest
-            ext : '.js'
-        .pipe coffee
-            bare: true
-        .pipe gulp.dest dest
+            .pipe newer
+                dest: dest
+                ext : '.js'
+            .pipe coffee
+                bare: true
+            .pipe gulp.dest dest
 
-    go [ 'src/server/' ]
-
-
-gulp.task 'js', () ->
-    go = (src, dest = 'dist/public/', file = 'client.min.js') ->
-        gulp.src append src, [ 'scripts/**/*.js' ]
-        .pipe newer "#{dest}scripts/#{file}"
-        .pipe concat file
-        .pipe uglify()
-        .pipe gulp.dest "#{dest}scripts/"
-
-    go [ 'src/client/' ]
+    go()
 
 
-gulp.task 'default', [ 'css', 'html', 'coffee', 'js' ]
+gulp.task 'coffee-client', () ->
+    go = (src = [ 'src/client/' ], dest = 'dist/public/scripts/', file = 'client.min.js') ->
+        gulp.src append src, [ 'scripts/**/*.coffee' ]
+            .pipe newer "#{dest}#{file}"
+            .pipe coffee
+                bare: true
+            .pipe concat file
+            .pipe uglify()
+            .pipe gulp.dest dest
+
+    go()
+
+
+gulp.task 'default', [ 'css', 'html', 'coffee-server', 'coffee-client' ]
