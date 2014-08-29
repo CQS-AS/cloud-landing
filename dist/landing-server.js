@@ -16,7 +16,7 @@ if (cluster.isMaster) {
   });
 } else {
   try {
-    port = parseInt(process.argv[2], 10);
+    port = parseInt(process.argv[2] || '3000', 10);
     console.log('Initialising child process');
     app = (require('express'))();
     app.set('port', port);

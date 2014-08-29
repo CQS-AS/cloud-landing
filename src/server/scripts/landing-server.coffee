@@ -13,7 +13,7 @@ if cluster.isMaster
 
 else
     try
-        port = parseInt process.argv[2], 10
+        port = parseInt process.argv[2] or '3000', 10
 
         console.log 'Initialising child process'
 
