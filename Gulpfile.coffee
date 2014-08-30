@@ -10,18 +10,10 @@ filelog    = require 'gulp-filelog'
 jade       = require 'gulp-jade'
 less       = require 'gulp-less'
 newer      = require 'gulp-newer'
+annotate   = require 'gulp-ng-annotate'
 plumber    = require 'gulp-plumber'
 uglify     = require 'gulp-uglify'
 gutil      = require 'gulp-util'
-
-
-append = (list, post) ->
-    n = []
-    for p in post
-        for l in list
-            n.push "#{l}#{if l[l.length - 1] is '/' then p else ''}"
-
-    n
 
 
 errcb = (err) ->
@@ -29,10 +21,9 @@ errcb = (err) ->
     @emit 'end'
 
 
-
 gulp.task 'css', () ->
-    go = (src = [ 'src/client/' ], dest = 'dist/public/styles/', file = 'client.css') ->
-        gulp.src append src, [ 'styles/**/*.less' ]
+    go = (src = [ 'src/client/styles/**/*.less', '!src/client/styles/**/*.inc.less' ], dest = 'dist/public/styles/', file = 'client.css') ->
+        gulp.src src
             .pipe newer "#{dest}#{file}"
             .pipe plumber errcb
             .pipe filelog()
@@ -45,8 +36,8 @@ gulp.task 'css', () ->
 
 
 gulp.task 'html', () ->
-    go = (src = [ 'src/client/' ], dest = 'dist/public/', check = 'index.html') ->
-        gulp.src append src, [ 'views/**/*.jade' ]
+    go = (src = [ 'src/client/views/**/*.jade' ], dest = 'dist/public/', check = 'index.html') ->
+        gulp.src src
             .pipe plumber errcb
             .pipe newer "#{dest}#{check}"
             .pipe jade()
@@ -56,8 +47,8 @@ gulp.task 'html', () ->
 
 
 gulp.task 'coffee-server', () ->
-    go = (src = [ 'src/server/' ], dest = 'dist/') ->
-        gulp.src append src, [ 'scripts/**/*.coffee' ]
+    go = (src = [ 'src/server/scripts/**/*.coffee' ], dest = 'dist/') ->
+        gulp.src src
             .pipe newer
                 dest: dest
                 ext : '.js'
@@ -69,13 +60,14 @@ gulp.task 'coffee-server', () ->
 
 
 gulp.task 'coffee-client', () ->
-    go = (src = [ 'src/client/' ], dest = 'dist/public/scripts/', file = 'client.min.js') ->
-        gulp.src append src, [ 'scripts/**/*.coffee' ]
+    go = (src = [ 'src/client/scripts/**/*.coffee' ], dest = 'dist/public/scripts/', file = 'client.min.js') ->
+        gulp.src src
             .pipe newer "#{dest}#{file}"
             .pipe coffee
                 bare: true
-            .pipe concat file
+            .pipe annotate()
             .pipe uglify()
+            .pipe concat file
             .pipe gulp.dest dest
 
     go()

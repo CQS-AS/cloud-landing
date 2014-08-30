@@ -1,5 +1,5 @@
 'use strict';
-var app, cluster, e, http, i, path, port, _i, _len, _ref;
+var app, cluster, http, i, path, port, _i, _len, _ref;
 
 path = require('path');
 
@@ -14,23 +14,23 @@ if (cluster.isMaster) {
   cluster.on('exit', function() {
     return cluster.fork();
   });
-} else {
-  try {
-    port = parseInt(process.argv[2] || '3000', 10);
-    console.log('Initialising child process');
-    app = (require('express'))();
-    app.set('port', port);
-    app.use((require('morgan'))('combined'));
-    app.use((require('compression'))());
-    app.use((require('serve-static'))(path.join(__dirname, 'public')));
-    app.use((require('errorhandler'))());
-    http = (require('http')).createServer(app);
-    http.listen(port, function() {
-      return console.log('Started http server on port', port);
-    });
-  } catch (_error) {
-    e = _error;
-    console.error('Usage: install-landing <port>');
-    console.error(e);
-  }
+  return;
 }
+
+app = (require('express'))();
+
+app.set('port', port = parseInt(process.argv[2] || '3000', 10));
+
+app.use((require('morgan'))('combined'));
+
+app.use((require('compression'))());
+
+app.use((require('serve-static'))(path.join(__dirname, 'public')));
+
+app.use((require('errorhandler'))());
+
+http = (require('http')).createServer(app);
+
+http.listen(port, function() {
+  return console.log('Started http server on port', port);
+});
