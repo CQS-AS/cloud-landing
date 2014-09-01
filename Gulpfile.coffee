@@ -22,7 +22,7 @@ errcb = (err) ->
 
 
 gulp.task 'css', () ->
-    go = (src = [ 'src/client/styles/**/*.less', '!src/client/styles/**/*.inc.less' ], dest = 'dist/public/styles/', file = 'client.css') ->
+    go = (src = [ 'src/client/styles/**/*.less', '!src/client/styles/**/*.inc.less' ], dest = 'dist/public/styles/', file = 'client.min.css') ->
         gulp.src src
             .pipe newer "#{dest}#{file}"
             .pipe plumber errcb
