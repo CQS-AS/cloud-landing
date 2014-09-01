@@ -26,7 +26,6 @@ gulp.task 'css', () ->
         gulp.src src
             .pipe newer "#{dest}#{file}"
             .pipe plumber errcb
-            .pipe filelog()
             .pipe less()
             .pipe cssmin()
             .pipe concat file
