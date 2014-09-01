@@ -83,6 +83,23 @@ html {
   text-align: center;
   background: @white-text;
   border-bottom: 1px solid #d3d3d3;
+
+  .price-top {
+    border: 1px solid #ddd;
+  }
+
+  .price-bottom {
+    background-color: rgba(55, 89, 160,1);
+    padding:15px;
+
+    &:first-child {
+      border-right: 1px solid #aaa;
+    }
+
+    &:last-child {
+      border-left: 1px solid #aaa;
+    }
+  }
 }
 
 .section-apps {
