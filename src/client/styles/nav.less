@@ -28,11 +28,28 @@ html {
     }
 }
 
-.navbar-default .navbar-nav>li>a {
-  color: @white-text;
+@media(max-width:767px) {
+  .navbar-default {
+    background-color: rgba(17,23,40,0.95);
 
-  &:hover {
-    color:@cw-blue;
+    button.navbar-toggle {
+      &:hover {
+        color: transparent;
+      }
+    }
+  }
+}
+
+.navbar-default {
+  .navbar-collapse.in {
+    background:  rgba(17,23,40,0.95);
+  }
+  .navbar-nav>li>a {
+    color: @white-text;
+
+    &:hover {
+      color: @cw-blue;
+    }
   }
 }
 
