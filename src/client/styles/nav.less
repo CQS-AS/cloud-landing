@@ -70,6 +70,10 @@ html {
     background: @white-text;
     border-bottom: 1px solid #d3d3d3;
 
+  i, p.lead {
+    color: rgba(40, 50, 80, 1);
+  }
+
   .subheader {
     padding-bottom:20px;
 
@@ -80,7 +84,7 @@ html {
 }
 
 .section-3 {
-  padding: 110px 0;
+  padding: 100px 0;
   text-align: center;
   background: rgba(40, 50, 80, 0.85);
   color: #bbb;
@@ -91,13 +95,12 @@ html {
 }
 
 .section-next {
-  background: #282836;
-  padding: 110px 0;
+  background: @white-text;
+  padding: 100px 0;
   text-align: center;
-  color: #bbb;
 
   i, p.lead {
-    color: white;
+    color:rgba(40, 50, 80, 1);
   }
 }
 
@@ -119,15 +122,15 @@ html {
 .section-pricing {
   padding: 100px 0;
   text-align: center;
-  background: @white-text;
-  border-bottom: 1px solid #d3d3d3;
+  background: rgba(40, 50, 80, 0.85);
 
   .price-top {
     border: 1px solid #ddd;
+    background: @white-text;
   }
 
   .price-bottom {
-    background-color: #282836;
+    background-color: rgba(40, 50, 80, 1);
     padding:15px;
 
     &:first-child {
