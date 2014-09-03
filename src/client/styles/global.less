@@ -34,8 +34,16 @@ body {
 }
 
 .feature-divide {
-  border-right: 1px solid #eee;
+  border-right: 1px solid #777;
   padding: 5px;
+  height: 100%;
+  .col-xs-4 {
+    height: 100%;
+  }
+}
+hr {
+  border-top: 1px solid transparent;
+  margin: 40px 0;
 }
 
 .feature-divide-trans {
@@ -95,7 +103,8 @@ body {
 
 .availability {
   font-size: 11px;
-  color: #777;
+  color: #ccc;
+  margin-top: -10px;
 }
 
 /* vertical alignment styles */
@@ -162,5 +171,15 @@ body {
   .col-lg-height {
     display:table-cell;
     float:none;
+  }
+}
+
+.cwblue {
+  color:@cw-blue;
+}
+
+.row.p-in {
+  p {
+    padding: 0 20px;
   }
 }

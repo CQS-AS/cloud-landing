@@ -28,11 +28,28 @@ html {
     }
 }
 
-.navbar-default .navbar-nav>li>a {
-  color: @white-text;
+@media(max-width:767px) {
+  .navbar-default {
+    background-color: rgba(17,23,40,0.95);
 
-  &:hover {
-    color:@cw-blue;
+    button.navbar-toggle {
+      &:hover {
+        color: transparent;
+      }
+    }
+  }
+}
+
+.navbar-default {
+  .navbar-collapse.in {
+    background:  rgba(17,23,40,0.95);
+  }
+  .navbar-nav>li>a {
+    color: @white-text;
+
+    &:hover {
+      color: @cw-blue;
+    }
   }
 }
 
@@ -64,11 +81,25 @@ html {
 }
 
 .section-3 {
-    padding: 110px 0;
-    text-align: center;
-    background: rgba(255, 255, 255, 0.6);
-    border-bottom:1px  solid #d3d3d3;
-    color: @gray-text;
+  padding: 110px 0;
+  text-align: center;
+  background: rgba(40, 50, 80, 0.85);
+  color: #bbb;
+
+    i, p.lead {
+      color: white;
+    }
+}
+
+.section-next {
+  background: #282836;
+  padding: 110px 0;
+  text-align: center;
+  color: #bbb;
+
+  i, p.lead {
+    color: white;
+  }
 }
 
 .section-4 {
@@ -97,7 +128,7 @@ html {
   }
 
   .price-bottom {
-    background-color: rgba(55, 89, 160,1);
+    background-color: #282836;
     padding:15px;
 
     &:first-child {
@@ -128,9 +159,9 @@ html {
 
 .section-tech {
   padding: 100px 0px;
-  background: rgba(40, 50, 80, 0.9);
+  background: rgba(255, 255, 255, 0.6);
   border-bottom: 1px solid #d3d3d3;
-  color: #e0e0e0;
+  color: #333;
 
   .header-1-white {
     color: #e0e0e0;
