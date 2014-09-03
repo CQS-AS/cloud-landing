@@ -59,12 +59,17 @@ html {
   border-bottom: 2px solid @cw-blue;
 }
 
-.section-1 {
+.section-trans {
     padding: 150px 0;
     border-bottom: 1px solid #d3d3d3;
+
+  .header-1, .header-2 {
+    color: white;
+  }
+
 }
 
-.section-2 {
+.section-white {
     padding: 100px 0px;
     text-align: center;
     background: @white-text;
@@ -83,24 +88,18 @@ html {
   }
 }
 
-.section-3 {
+.section-blue {
   padding: 100px 0;
   text-align: center;
-  background: rgba(40, 50, 80, 0.85);
+  background: rgba(40, 50, 80, 0.95);
   color: #bbb;
 
     i, p.lead {
       color: white;
     }
-}
 
-.section-next {
-  background: @white-text;
-  padding: 100px 0;
-  text-align: center;
-
-  i, p.lead {
-    color:rgba(40, 50, 80, 1);
+  .header-1, .header-2 {
+    color: #e0e0e0;
   }
 }
 
@@ -122,16 +121,17 @@ html {
 .section-pricing {
   padding: 100px 0;
   text-align: center;
-  background: rgba(40, 50, 80, 0.85);
 
   .price-top {
     border: 1px solid #ddd;
     background: @white-text;
+    background: rgba(255,255,255,0.5);
   }
 
   .price-bottom {
-    background-color: rgba(40, 50, 80, 1);
+    background: rgba(40, 50, 80, 0.75);
     padding:15px;
+    color: white;
 
     &:first-child {
       border-right: 1px solid #aaa;
@@ -159,13 +159,13 @@ html {
   color: @gray-text;
 }
 
-.section-tech {
+.section-gray {
   padding: 100px 0px;
   background: rgba(255, 255, 255, 0.6);
   border-bottom: 1px solid #d3d3d3;
   color: #333;
 
-  .header-1-white {
-    color: #e0e0e0;
+  i, p.lead {
+    color: rgba(40, 50, 80, 1);
   }
 }
