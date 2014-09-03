@@ -1,17 +1,29 @@
 (angular.module 'dir.scroller', []).directive 'dirScroller',
     ($timeout) ->
 
+        converter = new Showdown.converter()
+
         return {
             restrict: 'A'
 
             link: (scope, elem, attrs) ->
-                values = JSON.parse attrs.dirScroller
+                for v in JSON.parse attrs.dirScroller
+                    elem.append converter.makeHtml v
+
+                children = elem.children()
+                children.addClass 'hidden'
+
                 idx = -1
-
                 nextValue = () ->
-                    idx = 0 if ++idx is values.length
+                    unless idx is -1
+                        children.slice(idx, idx + 1).addClass 'pullUpFade'
+                        children.slice(idx, idx + 1).removeClass 'pullUp'
 
-                    elem.text values[idx]
+                    idx = 0 if ++idx is children.length
+
+                    children.slice(idx, idx + 1).addClass 'pullUp'
+                    children.slice(idx, idx + 1).removeClass 'hidden'
+                    children.slice(idx, idx + 1).removeClass 'pullUpFade'
 
                     $timeout nextValue, 3000
 
