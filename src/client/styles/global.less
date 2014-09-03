@@ -46,22 +46,23 @@ body {
     text-align: center;
 }
 
-.feature-divide {
-  border-right: 1px solid #777;
-  padding: 5px;
-  height: 100%;
-  .col-xs-4 {
-    height: 100%;
+p.padded {
+  padding: 5px 15px 50px 15px;
+}
+
+.feature-divide, .feature-divide-trans {
+  border-right: 1px solid transparent;
+}
+
+@media (min-width: 768px) {
+  .feature-divide {
+    border-right: 1px solid #777;
   }
 }
+
 hr {
   border-top: 1px solid transparent;
   margin: 40px 0;
-}
-
-.feature-divide-trans {
-  border-right: 1px solid transparent;
-  padding: 5px;
 }
 
 //--------Images
