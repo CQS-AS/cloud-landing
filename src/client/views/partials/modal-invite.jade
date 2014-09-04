@@ -7,19 +7,71 @@
                     span.sr-only Close
                 h4#inviteModalLabel.modal-title Request an Invite
             .modal-body
-                form.form-horizontal
+                .container-fluid
                     .row
-                        .col-xs-6
-                            .form-group
-                                label.control-label.col-xs-4 First Name
-                                .col-xs-8
-                                    input.form-control(type="text")
+                        .col-xs-12
+                            p.text-center To try out CaseWare Cloud, please request an invite by filling out the quick form below:
+                    .row
+                        .col-xs-12
+                            form.form-horizontal
+                                .row
+                                    .col-xs-6
+                                        h4.cwblue User Information
+                                .row
+                                    .col-xs-6
+                                        .form-group
+                                            label.control-label.col-xs-4 First Name
+                                            .col-xs-8
+                                                input.form-control(type="text")
 
-                        .col-xs-6
-                            .form-group
-                                label.control-label.col-xs-4 Last Name
-                                .col-xs-8
-                                    input.form-control(type="text")
+                                    .col-xs-6
+                                        .form-group
+                                            label.control-label.col-xs-4 Last Name
+                                            .col-xs-8
+                                                input.form-control(type="text")
+                                .row
+                                    .col-xs-6
+                                        .form-group
+                                            label.control-label.col-xs-4 Email Address
+                                            .col-xs-8
+                                                input.form-control(type="text")
+
+                                    .col-xs-6
+                                        .form-group
+                                            label.control-label.col-xs-4 Phone Number
+                                            .col-xs-8
+                                                input.form-control(type="text")
+
+                                .row
+                                    .col-xs-6
+                                        .form-group
+                                            label.control-label.col-xs-4 Address
+                                            .col-xs-8
+                                                textarea.form-control(type="text", rows="3")
+
+                                .row
+                                    .col-xs-6
+                                        h4.cwblue Firm Information
+                                .row
+                                    .col-xs-6
+                                        .form-group
+                                            label.control-label.col-xs-4 Firm Name
+                                            .col-xs-8
+                                                input.form-control(type="text")
+
+                                    .col-xs-6
+                                        .form-group
+                                            label.control-label.col-xs-4 Firm URL
+                                            .col-xs-8
+                                                input.form-control(type="text")
+                                .row
+                                    .col-xs-6
+                                        .form-group
+                                            label.control-label.col-xs-4 Number of employees
+                                            .col-xs-8
+
+
+
 
             .modal-footer
                 button.btn.btn-default(type='button', data-dismiss='modal') Close
