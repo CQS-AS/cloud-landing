@@ -1,4 +1,4 @@
-#calcModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='calcModalLabel', aria-hidden='true')
+#calcModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='calcModalLabel', aria-hidden='true', ng-controller="ctrlCalculator")
     .modal-dialog.modal-lg
         .modal-content
             .modal-header
@@ -13,23 +13,23 @@
                             .form-group
                                 label.control-label.col-xs-4 Number of users
                                 .col-xs-8
-                                    input.form-control(type="text", ng-mode="calc.users")
+                                    input.form-control(type="number", ng-model="calc.users", min=1, max=20000)
 
                     .row
                         .col-xs-6
                             .form-group
                                 label.control-label.col-xs-4 Number of Engagement files
                                 .col-xs-8
-                                    input.form-control(type="text", ng-mode="calc.files")
+                                    input.form-control(type="number", ng-model="calc.files", min=0, max=100000)
 
 
                 .row
                     .col-xs-12
-                        |R{{total.year}} annual fee (plan + users)
+                        |R{{total.year | number:2}} annual fee (plan + users)
 
                 .row
                     .col-xs-12
-                        |R{{total.month}} monthly fee (storage)
+                        |R{{total.month | number:2}} monthly fee ({{total.storeExtra*5}}GB extra storage)
 
 
             .modal-footer
