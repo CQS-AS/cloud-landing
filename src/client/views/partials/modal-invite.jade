@@ -1,16 +1,13 @@
-#inviteModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='inviteModalLabel', aria-hidden='true')
+#inviteModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='inviteModalLabel', aria-hidden='true', ng-controller="ctrlInvite")
     .modal-dialog.modal-lg
         .modal-content
-            .modal-header
+            .modal-header.modal-blue
                 button.close(type='button', data-dismiss='modal')
                     span(aria-hidden='true') ×
                     span.sr-only Close
                 h4#inviteModalLabel.modal-title Request an Invite
             .modal-body
                 .container-fluid
-                    .row
-                        .col-xs-12
-                            p.text-center To try out CaseWare Cloud, please request an invite by filling out the quick form below:
                     .row
                         .col-xs-12
                             form.form-horizontal(name="f")
@@ -60,8 +57,8 @@
                                         .form-group
                                             label.control-label.col-xs-4 Country
                                             .col-xs-8
-                                                select.form-control
-                                                    option(selected) South Africa
+                                                select.form-control(name="country", ng-model="country")
+                                                    option South Africa
                                                 p.example-info Select your country
 
 
@@ -82,17 +79,17 @@
                                             label.control-label.col-xs-4 Short Name
                                             .col-xs-8
                                                 input.form-control(type="text", name="shortname", ng-model="shortname", required)
-                                                p.example-info Your firm's short name. For example, ABCCO should be shortened to “abc”.
+                                                p.example-info Your firm's short name.
                                 .row
                                     .col-xs-6
                                         .form-group
                                             label.control-label.col-xs-4 Employees
                                             .col-xs-8
-                                                select.form-control
+                                                select.form-control(name="employees", ng-model="employees")
                                                     option Sole proprietor
                                                     option 2-5 employees
                                                     option 6-10 employees
-                                                    option(selected) 11-25 employees
+                                                    option 11-25 employees
                                                     option 26-50 employees
                                                     option 51-500 employees
                                                     option 500+ employees
@@ -102,9 +99,9 @@
                                         .form-group
                                             label.control-label.col-xs-4 CaseWare Time?
                                             .col-xs-8
-                                                select.form-control
+                                                select.form-control(name="time", ng-model="time")
                                                     option Yes
-                                                    option(selected) No
+                                                    option No
                                                 p.example-info Are you running the Time desktop version?
 
 

@@ -1,6 +1,7 @@
 client = angular.module 'client', [
 
     'ctrl.calculator'
+    'ctrl.invite'
 
     'dir.moreless'
     'dir.nav.collapse'
