@@ -4,3 +4,4 @@
         $scope.employees = "11-25 employees"
         $scope.time = "No"
         $scope.country = "South Africa"
+        $scope.tandc = false
