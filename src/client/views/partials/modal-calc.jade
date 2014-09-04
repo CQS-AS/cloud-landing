@@ -9,28 +9,48 @@
             .modal-body
                 .container-fluid
                     .row
-                        .col-xs-12
-                            p.text-center Use the below tool to calculate pricing based on the size of your firm (Note: this is an estimate, contact CQS for an exact quote):
-                    .row(style="margin-top:60px;")
+
                         .col-xs-6
                             form.form-horizontal
-                                .row
-                                    .col-xs-12
-                                        .form-group
-                                            label.control-label.col-xs-8 Number of users
-                                            .col-xs-4
-                                                input.form-control(type="number", ng-model="calc.users", min=1, max=20000)
+                                .form-group
+                                    label.control-label.col-xs-8 Number of users
+                                    .col-xs-4
+                                        input.form-control(type="number", ng-model="calc.users", min=1, max=20000)
 
-                                .row
-                                    .col-xs-12
-                                        .form-group
-                                            label.control-label.col-xs-8 Number of Engagement files (optional)
-                                            .col-xs-4
-                                                input.form-control(type="number", ng-model="calc.files", min=0, max=100000)
+                                .form-group
+                                    label.control-label.col-xs-8 Number of Engagement files
+                                    .col-xs-4
+                                        input.form-control(type="number", ng-model="calc.files", min=0, max=100000)
 
-                        .col-xs-6.modal-cost
-                            .row: .col-xs-12: h3 {{[ "Single User Plan", "Office Plan" ][total.plan]}}
-                            .row: .col-xs-12
+                        .col-xs-6.text-left
+                            p Use this tool to calculate estimate pricing based on the size of your firm (Please contact CQS for an exact quote).
+                            p User numbers should match the number of CaseWare Working Papers licences in your firm.
+
+
+                    .well(style="margin-top:40px;")
+                        .row
+                            .col-xs-6
+                                h3(style="margin-top:0") {{[ "Single User Plan", "Office Plan" ][total.plan]}}
+                                div(ng-hide="total.plan")
+                                    ul
+                                        li 1 Individual user login
+                                        li 5GB Storage
+                                        li Entity, staff and contact management
+                                        li Working Papers Integration (requires SmartSync licence)
+                                        li CaseWare Time Integration (requires Time Desktop)
+                                        li Unlimited portal access for your clients
+                                        li Daily Backups
+                                div(ng-show="total.plan")
+                                    ul
+                                        li 5 Individual user logins
+                                        li 25GB Storage
+                                        li Entity, staff and contact management
+                                        li Working Papers Integration (requires SmartSync licence)
+                                        li CaseWare Time Integration (requires Time Desktop)
+                                        li Unlimited portal access for your clients
+                                        li Daily Backups
+
+                            .col-xs-6.modal-cost
                                 table.table.table-condensed
                                     thead
                                         tr
@@ -49,15 +69,17 @@
                                             td.text-right {{total.users.add}}
                                             td.text-right {{total.store.add}}GB
                                             td.text-right R{{total.cost.add | number:2}}
-                                        tr.active
+                                        tr.info
                                             td: strong Annual Total
                                             td.text-right: strong {{total.users.add + total.users.inc}}
                                             td.text-right: strong {{total.store.inc + total.store.add}}GB
                                             td.text-right: strong R{{total.year | number:2}}
 
-                            .row(ng-show="total.store.extra"): .col-xs-12
-                                .alert.alert-info {{total.store.extra*5}}GB additional storage (estimated), R{{total.month | number:2}} monthly
+                                .alert.alert-info(ng-show="total.store.extra") {{total.store.extra*5}}GB additional storage (estimated), R{{total.month | number:2}} monthly
 
+                    .row
+                        .col-xs-12
+                            .alert.alert-warning Additional SmartSync licences (required for CloudSync and full Files integration) are not reflected on this calculator.
 
             .modal-footer
                 button.btn.btn-primary(type='button', data-dismiss='modal') Close

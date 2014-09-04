@@ -109,7 +109,7 @@
             .modal-footer
                 .pull-left
                     input(type="checkbox", ng-model="tandc")
-                    |&nbsp;&nbsp;By Clicking <b>Submit Request</b>, I agree to the <a href="#", target="_blank">Terms & Conditions</a>
+                    |&nbsp;&nbsp;By Clicking <b>Submit Request</b>, I agree to the <a href="terms.html", target="_blank">Terms & Conditions</a>
 
                 button.btn.btn-default(type='button', data-dismiss='modal') Close
-                button.btn.btn-primary(type='button', ng-disabled="!tandc || !f.$valid") Submit Request
+                button.btn.btn-primary(type='button', ng-disabled="true || !tandc || !f.$valid") Submit Request
