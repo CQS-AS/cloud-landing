@@ -1,0 +1,36 @@
+#calcModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='calcModalLabel', aria-hidden='true')
+    .modal-dialog.modal-lg
+        .modal-content
+            .modal-header
+                button.close(type='button', data-dismiss='modal')
+                    span(aria-hidden='true') ×
+                    span.sr-only Close
+                h4#calcModalLabel.modal-title Cost Calculator
+            .modal-body
+                form.form-horizontal
+                    .row
+                        .col-xs-6
+                            .form-group
+                                label.control-label.col-xs-4 Number of users
+                                .col-xs-8
+                                    input.form-control(type="text", ng-mode="calc.users")
+
+                    .row
+                        .col-xs-6
+                            .form-group
+                                label.control-label.col-xs-4 Number of Engagement files
+                                .col-xs-8
+                                    input.form-control(type="text", ng-mode="calc.files")
+
+
+                .row
+                    .col-xs-12
+                        |R{{total.year}} annual fee (plan + users)
+
+                .row
+                    .col-xs-12
+                        |R{{total.month}} monthly fee (storage)
+
+
+            .modal-footer
+                button.btn.btn-primary(type='button', data-dismiss='modal') Close
