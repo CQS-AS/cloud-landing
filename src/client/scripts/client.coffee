@@ -1,5 +1,7 @@
 client = angular.module 'client', [
 
+    'ngResource'
+
     'ctrl.calculator'
     'ctrl.invite'
 
@@ -8,6 +10,9 @@ client = angular.module 'client', [
     'dir.popover'
     'dir.scroller'
     'dir.scrollto'
+
+    'srv.api'
+    'srv.mail'
 
 ]
 

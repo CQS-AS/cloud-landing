@@ -19,14 +19,14 @@
                                         .form-group(ng-class="{ 'has-error': !f.firstname.$valid }")
                                             label.control-label.col-xs-4 First Name
                                             .col-xs-8
-                                                input.form-control(type="text", name="firstname", ng-model="firstname", required)
+                                                input.form-control(type="text", name="firstname", ng-model="req.firstname", required)
                                                 p.example-info E.g. John
 
                                     .col-xs-6
                                         .form-group(ng-class="{ 'has-error': !f.lastname.$valid }")
                                             label.control-label.col-xs-4 Last Name
                                             .col-xs-8
-                                                input.form-control(type="text", name="lastname", ng-model="lastname", required)
+                                                input.form-control(type="text", name="lastname", ng-model="req.lastname", required)
                                                 p.example-info E.g. Smith
 
                                 .row
@@ -34,7 +34,7 @@
                                         .form-group(ng-class="{ 'has-error': !f.email.$valid }")
                                             label.control-label.col-xs-4 Email Address
                                             .col-xs-8
-                                                input.form-control(type="email", name="email", ng-model="email", required)
+                                                input.form-control(type="email", name="email", ng-model="req.email", required)
                                                 p.example-info The email address that you will use to login
 
 
@@ -42,7 +42,7 @@
                                         .form-group(ng-class="{ 'has-error': !f.phone.$valid }")
                                             label.control-label.col-xs-4 Phone Number
                                             .col-xs-8
-                                                input.form-control(type="text", name="phone", ng-model="phone", required)
+                                                input.form-control(type="text", name="phone", ng-model="req.phone", required)
                                                 p.example-info Your firm's telephone number
 
                                 .row
@@ -50,14 +50,14 @@
                                         .form-group(ng-class="{ 'has-error': !f.address.$valid }")
                                             label.control-label.col-xs-4 Address
                                             .col-xs-8
-                                                textarea.form-control(type="text", rows="3", name="address", ng-model="address", required)
+                                                textarea.form-control(type="text", rows="3", name="address", ng-model="req.address", required)
                                                 p.example-info Your firm's physical address
 
                                     .col-xs-6
                                         .form-group
                                             label.control-label.col-xs-4 Country
                                             .col-xs-8
-                                                select.form-control(name="country", ng-model="country")
+                                                select.form-control(name="country", ng-model="req.country")
                                                     option South Africa
                                                 p.example-info Select your country
 
@@ -70,22 +70,22 @@
                                         .form-group(ng-class="{ 'has-error': !f.firmname.$valid }")
                                             label.control-label.col-xs-4 Firm Name
                                             .col-xs-8
-                                                input.form-control(type="text", name="firmname", ng-model="firmname", required)
+                                                input.form-control(type="text", name="firmname", ng-model="req.firmname", required)
                                                 p.example-info Your firm's full name
 
 
                                     .col-xs-6
-                                        .form-group(ng-class="{ 'has-error': !f.shortname.$valid }")
+                                        .form-group(ng-class="{ 'has-error': !f.firmshort.$valid }")
                                             label.control-label.col-xs-4 Short Name
                                             .col-xs-8
-                                                input.form-control(type="text", name="shortname", ng-model="shortname", required)
+                                                input.form-control(type="text", name="firmshort", ng-model="req.firmshort", required)
                                                 p.example-info Your firm's short name.
                                 .row
                                     .col-xs-6
                                         .form-group
                                             label.control-label.col-xs-4 Employees
                                             .col-xs-8
-                                                select.form-control(name="employees", ng-model="employees")
+                                                select.form-control(name="employees", ng-model="req.employees")
                                                     option Sole proprietor
                                                     option 2-5 employees
                                                     option 6-10 employees
@@ -99,7 +99,7 @@
                                         .form-group
                                             label.control-label.col-xs-4 CaseWare Time?
                                             .col-xs-8
-                                                select.form-control(name="time", ng-model="time")
+                                                select.form-control(name="cwt", ng-model="req.cwt")
                                                     option Yes
                                                     option No
                                                 p.example-info Are you running the Time desktop version?
@@ -107,9 +107,13 @@
 
 
             .modal-footer
-                .pull-left
-                    input(type="checkbox", ng-model="tandc")
+                .pull-left(ng-show="!done")
+                    input(type="checkbox", ng-model="req.tandc")
                     |&nbsp;&nbsp;By Clicking <b>Submit Request</b>, I agree to the <a href="terms.html", target="_blank">Terms & Conditions</a>
 
+                .pull-left.alert.alert-info(ng-show="done", style="margin-bottom:0")
+                    |You request for access has been submitted, you will be contacted by a representative shortly.
+
                 button.btn.btn-default(type='button', data-dismiss='modal') Close
-                button.btn.btn-primary(type='button', ng-disabled="true || !tandc || !f.$valid") Submit Request
+                button.btn.btn-primary(ng-show="!done", type='button', ng-disabled="busy() || done || !req.tandc || !f.$valid", ng-click="!busy() && !done && req.tandc && f.$valid && request()") Submit Request
+

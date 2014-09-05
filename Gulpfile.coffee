@@ -72,4 +72,8 @@ gulp.task 'coffee-client', () ->
     go()
 
 
+process.on 'uncaughtException', (err) ->
+        console.error err
+
+
 gulp.task 'default', [ 'css', 'html', 'coffee-server', 'coffee-client' ]
