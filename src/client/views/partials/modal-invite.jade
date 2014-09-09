@@ -50,7 +50,7 @@
                                         .form-group(ng-class="{ 'has-error': !f.address.$valid }")
                                             label.control-label.col-xs-4 Address
                                             .col-xs-8
-                                                textarea.form-control(type="text", rows="3", name="address", ng-model="req.address", required)
+                                                textarea.form-control(type="text", rows="2", name="address", ng-model="req.address", required)
                                                 p.example-info Your firm's physical address
 
                                     .col-xs-6
@@ -104,6 +104,13 @@
                                                 p.example-info Your firm's short name.
                                 .row
                                     .col-xs-6
+                                        .form-group(ng-class="{ 'has-error': !f.clientno.$valid }")
+                                            label.control-label.col-xs-4 Client Number
+                                            .col-xs-8
+                                                input.form-control(type="text", name="clientno", ng-model="req.clientno")
+                                                p.example-info Please provide your CaseWare client number
+
+                                    .col-xs-6
                                         .form-group
                                             label.control-label.col-xs-4 Employees
                                             .col-xs-8
@@ -117,6 +124,7 @@
                                                     option 500+ employees
                                                 p.example-info Number of employees
 
+                                .row
                                     .col-xs-6
                                         .form-group
                                             label.control-label.col-xs-4 CaseWare Time?
