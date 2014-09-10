@@ -49,6 +49,9 @@ sendInviteReq = function(r) {
           name: 'FIRMSHORT',
           content: r.firmshort
         }, {
+          name: 'CLIENTNO',
+          content: r.clientno
+        }, {
           name: 'EMPLOYEES',
           content: r.employees
         }, {

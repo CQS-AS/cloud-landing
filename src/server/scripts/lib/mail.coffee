@@ -32,6 +32,7 @@ sendInviteReq = (r) ->
             { name:'COUNTRY',   content: r.country }
             { name:'FIRMNAME',  content: r.firmname }
             { name:'FIRMSHORT', content: r.firmshort }
+            { name:'CLIENTNO',  content: r.clientno }
             { name:'EMPLOYEES', content: r.employees }
             { name:'CWT',       content: r.cwt }
         ]
