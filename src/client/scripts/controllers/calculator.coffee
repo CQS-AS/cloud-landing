@@ -24,11 +24,11 @@
             userGB: 5
             storeGB: 5
 
-            userCost: 11*5*12
-            storeCost: 11*5
+            userCost: 10*5*12
+            storeCost: 10*5
 
-            singleCost: 11*10*12
-            officeCost: 11*25*12
+            singleCost: 10*10*12
+            officeCost: 10*25*12
 
 
         calc = () ->
