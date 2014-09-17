@@ -12,8 +12,16 @@ less       = require 'gulp-less'
 newer      = require 'gulp-newer'
 annotate   = require 'gulp-ng-annotate'
 plumber    = require 'gulp-plumber'
+clean      = require 'gulp-rimraf'
 uglify     = require 'gulp-uglify'
 gutil      = require 'gulp-util'
+zip        = require 'gul-zip'
+
+
+now = new Date()
+
+distzip = "dist-" + now.getFullYear() + ("0#{now.getMonth() + 1}".slice -2) + ("0#{now.getDate()}".slice -2) + "-" +
+    ("0#{now.getHours()}".slice -2) + ("0#{now.getMinutes()}".slice -2) + ("0#{now.getSeconds()}".slice -2) + ".zip"
 
 
 errcb = (err) ->
@@ -72,8 +80,32 @@ gulp.task 'coffee-client', () ->
     go()
 
 
+gulp.task 'copy', () ->
+    go = (src, dest) ->
+        gulp.src src
+            .pipe newer dest
+            .pipe gulp.dest dest
+
+    go [ 'src/images/**/*' ], 'dist/images/'
+
+
+gulp.task 'zip', () ->
+    go = (src = [ 'dist/**/*' ], dest = '.', arch = distzip) ->
+        gulp.src src
+            .pipe zip arch
+            .pipe gulp.dest dest
+
+    go()
+
+
+gulp.task 'zip-clean', () ->
+    gulp.src [ '*.zip', "!#{distzip}" ], { read: false }
+        .pipe clean()
+
+
+
 process.on 'uncaughtException', (err) ->
         console.error err
 
 
-gulp.task 'default', [ 'css', 'html', 'coffee-server', 'coffee-client' ]
+gulp.task 'default', [ 'css', 'html', 'coffee-server', 'coffee-client', 'copy', 'zip', 'zip-clean' ]
