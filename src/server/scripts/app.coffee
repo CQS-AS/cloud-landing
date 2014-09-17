@@ -34,7 +34,7 @@ app.use (require 'errorhandler')()
 (require './lib/mail').init cfg, app
 
 app.get '/', (req, res) ->
-    res.sendfile cfg.index[req.hostname] || cfg.index['default'], { root: './public' }
+    res.status(200).sendFile cfg.index[req.hostname] || cfg.index['default'], { root: './public' }
 
 http = (require 'http').createServer app
 http.listen port, () ->

@@ -1,4 +1,6 @@
 module.exports =
-    name : 'CQSCloud'
-    email: 'support@cqscloud.com'
-    site : 'www.cqscloud.com'
+    site:
+        default:
+            name : 'CQSCloud'
+            email: 'support@cqscloud.com'
+            url  : 'www.cqscloud.com'

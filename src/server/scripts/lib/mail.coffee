@@ -50,14 +50,14 @@ sendTemplate = (tmpl, recipients, cb) ->
             'html'                     : tmpl.html
             'text'                     : tmpl.text
             'subject'                  : tmpl.subject
-            'from_email'               : cfg.mail.email
-            'from_name'                : cfg.mail.name
-            'headers'                  : { 'Reply-To': cfg.mail.email }
+            'from_email'               : cfg.mail.site.default.email
+            'from_name'                : cfg.mail.site.default.name
+            'headers'                  : { 'Reply-To': cfg.mail.site.default.email }
             'important'                : false
             'merge'                    : true
             'tags'                     : tmpl.tags
             'global_merge_vars'        : tmpl.vars
-            'metadata'                 : { 'website': cfg.mail.site }
+            'metadata'                 : { 'website': cfg.mail.site.default.url }
             'recipient_metadata'       : { 'rcpt'  : r.email, 'values': r.meta } for r in recipients
             'to'                       : { 'email': r.email, 'name' : r.name } for r in recipients
             'merge_vars'               : { 'rcpt': r.email, 'vars': r.vars } for r in recipients
