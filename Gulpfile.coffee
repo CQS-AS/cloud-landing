@@ -2,6 +2,7 @@
 
 
 gulp       = require 'gulp'
+async      = require 'async'
 
 coffee     = require 'gulp-coffee'
 concat     = require 'gulp-concat'
@@ -80,14 +81,17 @@ gulp.task 'coffee-client', () ->
     go()
 
 
-gulp.task 'copy', () ->
-    go = (src, dest) ->
+gulp.task 'copy', (cb) ->
+    go = (src, dest, cb) ->
         gulp.src src
             .pipe newer dest
             .pipe gulp.dest dest
+            .on 'end', cb
 
-    go [ 'src/client/images/**/*' ], 'dist/public/images/'
-    go [ 'package.json' ], 'dist/'
+    async.parallel [
+        (cb) -> go [ 'src/client/images/**/*' ], 'dist/public/images/', cb
+        (cb) -> go [ 'package.json' ], 'dist/', cb
+    ], cb
 
 
 gulp.task 'zip-clean', () ->
