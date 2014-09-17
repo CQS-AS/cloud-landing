@@ -2,7 +2,7 @@
 
 
 gulp       = require 'gulp'
-async      = require 'async'
+es         = require 'event-stream'
 
 coffee     = require 'gulp-coffee'
 concat     = require 'gulp-concat'
@@ -81,17 +81,16 @@ gulp.task 'coffee-client', () ->
     go()
 
 
-gulp.task 'copy', (cb) ->
-    go = (src, dest, cb) ->
+gulp.task 'copy', () ->
+    go = (src, dest) ->
         gulp.src src
             .pipe newer dest
             .pipe gulp.dest dest
-            .on 'end', cb
 
-    async.parallel [
-        (cb) -> go [ 'src/client/images/**/*' ], 'dist/public/images/', cb
-        (cb) -> go [ 'package.json' ], 'dist/', cb
-    ], cb
+    es.concat(
+        go([ 'src/client/images/**/*' ], 'dist/public/images/'),
+        go([ 'package.json' ], 'dist/')
+    )
 
 
 gulp.task 'zip-clean', () ->
