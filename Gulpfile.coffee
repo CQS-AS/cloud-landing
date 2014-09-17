@@ -15,7 +15,7 @@ plumber    = require 'gulp-plumber'
 clean      = require 'gulp-rimraf'
 uglify     = require 'gulp-uglify'
 gutil      = require 'gulp-util'
-zip        = require 'gul-zip'
+zip        = require 'gulp-zip'
 
 
 now = new Date()
@@ -86,7 +86,8 @@ gulp.task 'copy', () ->
             .pipe newer dest
             .pipe gulp.dest dest
 
-    go [ 'src/images/**/*' ], 'dist/images/'
+    go [ 'src/client/images/**/*' ], 'dist/public/images/'
+    go [ 'package.json' ], 'dist/'
 
 
 gulp.task 'zip', () ->
