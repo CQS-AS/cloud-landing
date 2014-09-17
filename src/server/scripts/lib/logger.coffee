@@ -1,16 +1,30 @@
 'use strict'
 
+cluster = require 'cluster'
+
 
 fmtDate = (date) ->
-    "          - - [#{(if date then date else new Date()).toUTCString()}]"
+    if cluster.isWorker
+        "#Worker #{cluster.worker.id} - - [#{(if date then date else new Date()).toUTCString()}]"
+    else
+        "#DaMaster - - [#{(if date then date else new Date()).toUTCString()}]"
+
+
+fmtArgs = (args) ->
+    (for k, v of args
+        if Object.prototype.toString.call(v) is '[object Error]'
+            "[#{v.toString()}]"
+        else
+            JSON.stringify v
+    ).join ' '
 
 
 log = () ->
-    console.log fmtDate(), (JSON.stringify v for k, v of arguments).join ' '
+    console.log fmtDate(), fmtArgs arguments
 
 
 error = () ->
-    console.error fmtDate(), (JSON.stringify v for k, v of arguments).join ' '
+    console.error fmtDate(), fmtArgs arguments
 
 
 onerror = (err) ->
