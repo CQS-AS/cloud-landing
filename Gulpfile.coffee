@@ -90,7 +90,15 @@ gulp.task 'copy', () ->
     go [ 'package.json' ], 'dist/'
 
 
-gulp.task 'zip', () ->
+gulp.task 'zip-clean', () ->
+    go = (src = [ '*.zip', "!#{distzip}" ]) ->
+        gulp.src src, { read: false }
+            .pipe clean()
+
+    go()
+
+
+gulp.task 'zip', [ 'build' ], () ->
     go = (src = [ 'dist/**/*' ], dest = '.', arch = distzip) ->
         gulp.src src
             .pipe zip arch
@@ -99,14 +107,9 @@ gulp.task 'zip', () ->
     go()
 
 
-gulp.task 'zip-clean', () ->
-    gulp.src [ '*.zip', "!#{distzip}" ], { read: false }
-        .pipe clean()
-
-
-
 process.on 'uncaughtException', (err) ->
-        console.error err
+    console.error err
 
 
-gulp.task 'default', [ 'css', 'html', 'coffee-server', 'coffee-client', 'copy', 'zip', 'zip-clean' ]
+gulp.task 'build', [ 'css', 'html', 'coffee-server', 'coffee-client', 'copy'  ]
+gulp.task 'default', [ 'zip', 'zip-clean' ]
