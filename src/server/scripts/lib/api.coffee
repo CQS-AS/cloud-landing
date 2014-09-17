@@ -37,6 +37,12 @@ init = (cfg, app) ->
     l.log 'Api.init: Initialising'
     app.post '/api/1/invite', requestInvite
 
+    (require './api-status').init cfg, app
+
+    return
+
 
 module.exports =
     init: init
+    sendOk: sendOk
+    sendErr: sendErr
