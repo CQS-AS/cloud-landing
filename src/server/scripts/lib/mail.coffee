@@ -7,19 +7,19 @@ l = require './logger'
 cfg = null
 
 
-sendInviteReq = (r) ->
-    #l.log 'sendInviteReq', r
+sendInviteReq = (hostname, r) ->
+    c = cfg.get 'mail', hostname
 
     tmpl =
-        name   : cfg.mandrill.tmpl?.invite?.t || 'cloud-invite-request'
-        subject: cfg.mandrill.tmpl?.invite?.s || 'CaseWare Cloud Invite Request'
+        name   : c.tmpl.invite.t
+        subject: c.tmpl.invite.s
         cont   : null
         html   : null
         text   : null
         tags   : [ 'invite-request' ]
         vars   : [] 
 
-    sendTemplate tmpl, [
+    sendTemplate hostname, tmpl, [
         email: 'sales@cqscloud.com'
         name: 'Sales'
         meta: {}
@@ -39,7 +39,9 @@ sendInviteReq = (r) ->
     ]
 
 
-sendTemplate = (tmpl, recipients, cb) ->
+sendTemplate = (hostname, tmpl, recipients, cb) ->
+    c = cfg.get 'mail', hostname
+
     opt =
         'template_name'                : tmpl.name
         'template_content'             : tmpl.cont
@@ -50,14 +52,14 @@ sendTemplate = (tmpl, recipients, cb) ->
             'html'                     : tmpl.html
             'text'                     : tmpl.text
             'subject'                  : tmpl.subject
-            'from_email'               : cfg.mail.site.default.email
-            'from_name'                : cfg.mail.site.default.name
-            'headers'                  : { 'Reply-To': cfg.mail.site.default.email }
+            'from_email'               : c.email
+            'from_name'                : c.name
+            'headers'                  : { 'Reply-To': c.email }
             'important'                : false
             'merge'                    : true
             'tags'                     : tmpl.tags
             'global_merge_vars'        : tmpl.vars
-            'metadata'                 : { 'website': cfg.mail.site.default.url }
+            'metadata'                 : { 'website': c.url }
             'recipient_metadata'       : { 'rcpt'  : r.email, 'values': r.meta } for r in recipients
             'to'                       : { 'email': r.email, 'name' : r.name } for r in recipients
             'merge_vars'               : { 'rcpt': r.email, 'vars': r.vars } for r in recipients
@@ -79,7 +81,7 @@ sendTemplate = (tmpl, recipients, cb) ->
 
     l.log 'Main.sendTemplate', 'Ready to send', opt
 
-    (new mandrill.Mandrill cfg.mandrill.key).messages.sendTemplate opt, (result) ->
+    (new mandrill.Mandrill (cfg.get 'mandrill', hostname).key).messages.sendTemplate opt, (result) ->
         l.log 'Mail.sentTemplate', 'Mandrill send ok', result
         cb? null, result
         cb = null

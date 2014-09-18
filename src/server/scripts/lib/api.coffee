@@ -28,8 +28,7 @@ send = (res, err, obj) ->
 
 
 requestInvite = (req, res) ->
-    #l.log 'requestInvite', req.body
-    mail.sendInviteReq req.body
+    mail.sendInviteReq req.hostname, req.body
     sendOk res
 
 
