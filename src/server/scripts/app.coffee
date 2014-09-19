@@ -5,13 +5,11 @@ cluster = require 'cluster'
 
 l = require './lib/logger'
 
-cfg = require './cfg/cfg'
+cfg = require './cfg'
 
 
 if cluster.isMaster
-    l.log cfg
-
-    for i in require('os').cpus()
+    for i in (if (cfg.get 'cluster') then require('os').cpus() else [ 1 ])
         cluster.fork()
 
     cluster.on 'exit', () ->
@@ -24,7 +22,7 @@ port = process.env.PORT || 3000
 app = (require 'express')()
 app.set 'port', port
 
-(require './lib/api-status').init cfg, app
+(require './lib/status').init cfg, app
 
 app.use (require 'morgan') 'combined'
 app.use (require 'compression')()
@@ -36,7 +34,7 @@ app.use (require 'errorhandler')()
 (require './lib/mail').init cfg, app
 
 app.get '/', (req, res) ->
-    res.sendFile cfg.index[req.hostname] || cfg.index.default, { root: './public' }
+    res.sendFile (cfg.get 'index', req.hostname), { root: './public' }
 
 http = (require 'http').createServer app
 http.listen port, () ->
