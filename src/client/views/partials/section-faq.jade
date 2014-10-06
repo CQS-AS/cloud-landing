@@ -11,19 +11,20 @@ section#faq.section-blue
             .col-sm-4.col-xs-12.text-left
                 ul.nav.nav-pills.nav-stacked(role="tablist")
                     li.active: a(href="#faq_security" role="tab" data-toggle="tab") Security & Privacy
+                    li: a(href="#faq_storage" role="tab" data-toggle="tab") Storage & Backups
+                    li: a(href="#faq_pricing" role="tab" data-toggle="tab") Plans & Pricing
                     li: a(href="#faq_support" role="tab" data-toggle="tab") Support
-                    li: a(href="#faq_storage" role="tab" data-toggle="tab") Storage & Pricing
 
             .col-sm-8.col-xs-12
                 .tab-content.text-left
-
                     .tab-pane.active(id="faq_security")
                         include section-faq-security
-
-                    .tab-pane(id="faq_support")
-                        include section-faq-support
 
                     .tab-pane(id="faq_storage")
                         include section-faq-storage
 
+                    .tab-pane(id="faq_pricing")
+                        include section-faq-pricing
 
+                    .tab-pane(id="faq_support")
+                        include section-faq-support
