@@ -18,7 +18,7 @@
                                         input.form-control(type="number", ng-model="calc.users", min=1, max=20000)
 
                                 .form-group
-                                    label.control-label.col-xs-8 Number of Engagement files
+                                    label.control-label.col-xs-8 Number of Engagements
                                     .col-xs-4
                                         input.form-control(type="number", ng-model="calc.files", min=0, max=100000)
 
@@ -75,7 +75,10 @@
                                             td.text-right: strong {{total.store.inc + total.store.add}}GB
                                             td.text-right: strong R{{total.year | number:2}}
 
-                                .alert.alert-info(ng-show="total.store.extra") {{total.store.extra*5}}GB additional storage (estimated), R{{total.month | number:2}} monthly
+                                .alert.alert-info
+                                    p: strong Based on the number of engagements:
+                                    p You require {{total.store.total | number:0}}GB (estimated), {{(total.store.inc + total.store.add) | number:0}}GB included
+                                    p(ng-show="total.store.extra") You need {{(total.store.extra*5) | number:0}}GB additional (estimated), R{{total.month | number:2}} pm
 
                     .row
                         .col-xs-12

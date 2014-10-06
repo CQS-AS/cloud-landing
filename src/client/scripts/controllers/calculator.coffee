@@ -15,6 +15,7 @@
             year: 0
             month: 0
             store:
+                total: 0
                 inc: 0
                 add: 0
                 extra: 0
@@ -43,8 +44,8 @@
 
                 $scope.total.store.inc = 1*CONST.userGB*$scope.total.users.inc
                 $scope.total.store.add = 1*CONST.userGB*$scope.total.users.add
-                calcStore = $scope.calc.files*CONST.fileGB
-                $scope.total.store.extra = Math.ceil Math.max 0, (calcStore - ($scope.total.store.inc + $scope.total.store.add))/CONST.storeGB
+                $scope.total.store.total = $scope.calc.files*CONST.fileGB
+                $scope.total.store.extra = Math.ceil Math.max 0, ($scope.total.store.total - ($scope.total.store.inc + $scope.total.store.add))/CONST.storeGB
                 $scope.total.month = $scope.total.store.extra*CONST.storeCost
 
 
