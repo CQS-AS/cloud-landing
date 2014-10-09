@@ -1,5 +1,5 @@
 (angular.module 'ctrl.calculator', []).controller 'ctrlCalculator',
-    ($scope) ->
+    ($scope, facSiteCfg) ->
         $scope.calc =
             users: 10
             files: 100
@@ -25,11 +25,11 @@
             userGB: 5
             storeGB: 5
 
-            userCost: 10*5*12
-            storeCost: 10*5
+            userCost: facSiteCfg.price.factor*5*12
+            storeCost: facSiteCfg.price.factor*5
 
-            singleCost: 10*10*12
-            officeCost: 10*25*12
+            singleCost: facSiteCfg.price.factor*10*12
+            officeCost: facSiteCfg.price.factor*25*12
 
 
         calc = () ->

@@ -1,5 +1,5 @@
 doctype html
-html(lang="en", ng-app="client")
+html.cwa(lang="en", ng-app="client")
 
     head
         meta(charset="utf-8")
@@ -10,13 +10,19 @@ html(lang="en", ng-app="client")
 
         title CaseWare Africa Cloud
 
+        style.
+            .ng-cloak { display: none }
+
         include partials/index-styles
 
-    body(data-spy="scroll", data-target=".navbar-scroll")
+    body.ng-cloak(data-spy="scroll", data-target=".navbar-scroll", ng-controller="ctrlMain")
 
         include partials/sections
         include partials/modals
 
         include partials/index-scripts
+
+        script.
+            window['SITECFG'] = { price: { currency: '$', factor: '1' } }
 
         script(src='scripts/client.min.js')

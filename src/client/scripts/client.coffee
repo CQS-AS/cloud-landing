@@ -4,12 +4,15 @@ client = angular.module 'client', [
 
     'ctrl.calculator'
     'ctrl.invite'
+    'ctrl.main'
 
     'dir.moreless'
     'dir.nav.collapse'
     'dir.popover'
     'dir.scroller'
     'dir.scrollto'
+
+    'fac.sitecfg'
 
     'srv.api'
     'srv.mail'

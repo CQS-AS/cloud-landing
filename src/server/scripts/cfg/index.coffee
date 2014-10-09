@@ -3,6 +3,7 @@
 env =
     'cloud.casewareafrica.com': 'africa'
     'dev'                     : 'dev'
+    'africa'                  : 'africa'
 
 types =
     default:

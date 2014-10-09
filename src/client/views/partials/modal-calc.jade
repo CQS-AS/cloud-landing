@@ -63,22 +63,22 @@
                                             td: strong Included
                                             td.text-right {{total.users.inc}}
                                             td.text-right {{total.store.inc}}GB
-                                            td.text-right R{{total.cost.plan | number:2}}
+                                            td.text-right {{currency}}{{total.cost.plan | number:2}}
                                         tr(ng-show="total.users.add")
                                             td: strong Additional
                                             td.text-right {{total.users.add}}
                                             td.text-right {{total.store.add}}GB
-                                            td.text-right R{{total.cost.add | number:2}}
+                                            td.text-right {{currency}}{{total.cost.add | number:2}}
                                         tr.info
                                             td: strong Annual Total
                                             td.text-right: strong {{total.users.add + total.users.inc}}
                                             td.text-right: strong {{total.store.inc + total.store.add}}GB
-                                            td.text-right: strong R{{total.year | number:2}}
+                                            td.text-right: strong {{currency}}{{total.year | number:2}}
 
                                 .alert.alert-info
                                     p: strong Based on the number of engagements:
                                     p You require {{total.store.total | number:0}}GB (estimated), {{(total.store.inc + total.store.add) | number:0}}GB included
-                                    p(ng-show="total.store.extra") You need {{(total.store.extra*5) | number:0}}GB additional (estimated), R{{total.month | number:2}} pm
+                                    p(ng-show="total.store.extra") You need {{(total.store.extra*5) | number:0}}GB additional (estimated), {{currency}}{{total.month | number:2}} pm
 
                     .row
                         .col-xs-12
